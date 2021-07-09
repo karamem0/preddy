@@ -1,0 +1,62 @@
+on:
+  push:
+    branches:
+      - master
+      - develop
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repos
+        uses: actions/checkout@v2
+      - name: Setup Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+      - name: Build client
+        env:
+          PUBLIC_URL: ${{secrets.PUBLIC_URL}}
+          REACT_APP_SERVER_URL: ${{secrets.REACT_APP_SERVER_URL}}
+        run: |
+          npm ci
+          npm run build
+        working-directory: source/client
+      - name: Copy files
+        shell: pwsh
+        run: |
+          New-Item -Type Directory -Path artifact/preddy
+          Copy-Item -Path source/client/build/* -Destination artifact/preddy -Recurse
+          Copy-Item -Path source/client/web.config -Destination artifact/preddy
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 5.x
+      - name: Build server
+        run: |
+          dotnet restore source/server
+          dotnet build source/server -c Release
+          dotnet publish source/server -c Release -o artifact/preddy/api
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: preddy
+          path: artifact/preddy
+  deploy:
+    needs: build
+    runs-on: windows-latest
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: preddy
+          path: preddy
+      - name: Connect to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{secrets.AZURE_CREDENTIALS}}
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: preddy
+          package: preddy
