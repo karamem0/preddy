@@ -50,7 +50,7 @@ namespace Karamem0.Preddy.Models.Database
         [StringLength(1024)]
         public string? MediaUrl { get; set; }
 
-        [StringLength(200)]
+        [StringLength(1024)]
         public string? Text { get; set; }
 
         [Column(TypeName = "datetime2")]

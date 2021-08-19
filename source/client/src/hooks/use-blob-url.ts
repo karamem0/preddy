@@ -24,10 +24,10 @@ const useBlobUrl = (sourceUrl?: string): string | undefined => {
         return;
       }
       const value = URL.createObjectURL(blob);
-      setBlobUrl(() => {
-        // if (current) {
-        //   URL.revokeObjectURL(current);
-        // }
+      setBlobUrl((current) => {
+        if (current) {
+          URL.revokeObjectURL(current);
+        }
         return value;
       });
     })();
