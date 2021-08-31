@@ -30,11 +30,11 @@ namespace Karamem0.Preddy.Batch.Services
             this.options = options.Value;
         }
 
-        public async IAsyncEnumerable<TweetStatus> SearchAsync(ulong sinceId)
+        public async IAsyncEnumerable<TweetStatus> SearchAsync(ulong? sinceId)
         {
             if (this.options.SearchQuery is null)
             {
-                throw new ArgumentNullException(nameof(this.options.SearchQuery));
+                throw new InvalidOperationException();
             }
             var nextToken = default(string);
             while (true)
@@ -67,7 +67,7 @@ namespace Karamem0.Preddy.Batch.Services
                             ProfileImageUrl = status.User?.ProfileImageUrl,
                             MediaUrl = status.Media?.Url,
                             Text = status.Status?.Text,
-                            TweetedAt = status.Status?.CreatedAt ?? default(DateTime)
+                            TweetedAt = status.Status?.CreatedAt ?? default
                         };
                     }
                 }

@@ -6,9 +6,9 @@
 // https://github.com/karamem0/preddy/blob/master/LICENSE
 //
 
+using Karamem0.Preddy.Batch.Services;
 using Karamem0.Preddy.Models;
 using Karamem0.Preddy.Services;
-using Karamem0.Preddy.Batch.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;

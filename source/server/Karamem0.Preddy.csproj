@@ -1,17 +1,17 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <PackageId>Preddy</PackageId>
-    <Version>2.0.1</Version>
+    <Version>2.0.2</Version>
     <Authors>karamem0</Authors>
     <Company>karamem0</Company>
     <Product>Preddy</Product>
     <Copyright>Copyright (c) 2021 karamem0</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/karamem0/preddy</PackageProjectUrl>
-    <AssemblyVersion>2.0.1</AssemblyVersion>
-    <FileVersion>2.0.1</FileVersion>
+    <AssemblyVersion>2.0.2</AssemblyVersion>
+    <FileVersion>2.0.2</FileVersion>
     <RootNamespace>Karamem0.Preddy</RootNamespace>
     <UserSecretsId>c76a0933-6ec8-482c-9f23-321451b10050</UserSecretsId>
     <Nullable>enable</Nullable>

@@ -43,11 +43,11 @@ namespace Karamem0.Preddy.Batch.Controllers
         [HttpPost()]
         public async Task<IActionResult> PostAsync()
         {
-            var max = await tweetStatusService.GetMaxAsync();
-            var statuses = twitterService.SearchAsync(max.StatusId);
+            var max = await this.tweetStatusService.GetMaxAsync();
+            var statuses = this.twitterService.SearchAsync(max.StatusId);
             await foreach (var status in statuses)
             {
-                await tweetStatusService.AddOrUpdateAsync(status);
+                await this.tweetStatusService.AddOrUpdateAsync(status);
             }
             return this.Ok();
         }
