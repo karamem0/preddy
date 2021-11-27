@@ -41,7 +41,7 @@ namespace Karamem0.Preddy.Batch.Services
             {
                 newValue.CreatedAt = DateTime.UtcNow;
                 newValue.UpdatedAt = DateTime.UtcNow;
-                this.context.TweetStatuses.Add(newValue);
+                _ = this.context.TweetStatuses.Add(newValue);
             }
             else
             {
@@ -53,7 +53,7 @@ namespace Karamem0.Preddy.Batch.Services
                 oldValue.TweetedAt = newValue.TweetedAt;
                 oldValue.UpdatedAt = DateTime.UtcNow;
             }
-            await this.context.SaveChangesAsync();
+            _ = await this.context.SaveChangesAsync();
         }
 
     }

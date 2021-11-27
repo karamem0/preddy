@@ -1,19 +1,19 @@
 {
   "name": "preddy",
-  "version": "2.0.3",
+  "version": "2.1.0",
   "private": true,
   "dependencies": {
-    "@fluentui/react-icons-mdl2": "^1.2.7",
-    "@fluentui/react-northstar": "^0.57.0",
+    "@fluentui/react-icons-mdl2": "^1.2.9",
+    "@fluentui/react-northstar": "^0.59.0",
     "linkifyjs": "^3.0.3",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-icons": "^4.3.1",
-    "react-intl": "^5.21.0",
+    "react-intl": "^5.22.0",
     "react-scripts": "4.0.3",
     "react-share": "^4.4.0",
     "recharts": "^2.1.6",
-    "sass": "^1.43.4",
+    "sass": "^1.43.5",
     "typescript": "^4.4.4"
   },
   "devDependencies": {
@@ -22,7 +22,7 @@
     "@types/jest": "^26.0.24",
     "@types/linkifyjs": "^2.1.4",
     "@types/node": "^16.11.6",
-    "@types/react": "^16.14.20",
+    "@types/react": "^16.14.21",
     "@types/react-dom": "^16.9.14",
     "@typescript-eslint/eslint-plugin": "^4.28.4",
     "@typescript-eslint/parser": "^4.28.4",
@@ -36,10 +36,10 @@
     "extract-react-intl-messages": "^4.1.1",
     "postcss": "^8.3.11",
     "postcss-scss": "^4.0.2",
-    "stylelint": "^13.13.1",
-    "stylelint-config-recess-order": "^2.5.0",
-    "stylelint-config-recommended-scss": "^4.3.0",
-    "stylelint-scss": "^3.21.0",
+    "stylelint": "^14.1.0",
+    "stylelint-config-recess-order": "^3.0.0",
+    "stylelint-config-recommended-scss": "^5.0.2",
+    "stylelint-scss": "^4.0.0",
     "ts-jest": "^26.5.6"
   },
   "scripts": {
@@ -66,22 +66,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "jest": {
-    "globals": {
-      "ts-jest": {
-        "isolatedModules": "disabled"
-      }
-    },
-    "reporters": [
-      "default"
-    ],
-    "testMatch": [
-      "**/*.test.ts",
-      "**/*.test.tsx"
-    ],
-    "transform": {
-      "^.+\\.(ts|tsx)$": "ts-jest"
-    }
   }
 }

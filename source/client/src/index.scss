@@ -153,19 +153,20 @@ p {
             grid-column: 2 / 3;
             grid-gap: 0.25rem;
             overflow: hidden;
-            .screenname {
-              overflow: hidden;
-              text-overflow: ellipsis;
-              white-space: nowrap;
-            }
             .username {
               overflow: hidden;
               font-weight: bold;
               text-overflow: ellipsis;
               white-space: nowrap;
             }
+            .screenname {
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+            }
             .tweetedat {
               overflow: hidden;
+              font-weight: normal;
               text-align: right;
               text-overflow: ellipsis;
               white-space: nowrap;

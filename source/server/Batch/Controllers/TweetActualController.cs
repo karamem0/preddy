@@ -44,6 +44,7 @@ namespace Karamem0.Preddy.Batch.Controllers
             {
                 await this.tweetActualService.AddOrUpdateAsync(actual);
             }
+            await this.tweetActualService.ExportAsync();
             return this.Ok();
         }
 

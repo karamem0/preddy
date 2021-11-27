@@ -33,7 +33,9 @@ const TweetStatusItem: React.FC<TweetStatusItemProps> = (props: TweetStatusItemP
     userName,
     screenName,
     text,
-    tweetedAt
+    tweetedAt,
+    statusUrl,
+    userUrl
   } = props;
   const profileImageUrl = useBlobUrl(props.profileImageUrl);
   const intl = useIntl();
@@ -46,9 +48,15 @@ const TweetStatusItem: React.FC<TweetStatusItemProps> = (props: TweetStatusItemP
           size="large" />
       </div>
       <div className="header">
-        <span className="username">{userName}</span>
+        <a
+          className="username"
+          href={userUrl}>
+          {userName}
+        </a>
         <span className="screenname">{screenName}</span>
-        <span className="tweetedat">
+        <a
+          className="tweetedat"
+          href={statusUrl}>
           {
             intl.formatDate(new Date(tweetedAt.toLocaleString()), {
               year: 'numeric',
@@ -59,7 +67,7 @@ const TweetStatusItem: React.FC<TweetStatusItemProps> = (props: TweetStatusItemP
               second: 'numeric'
             })
           }
-        </span>
+        </a>
       </div>
       <div className="text">
         <span dangerouslySetInnerHTML={{ __html: linkifyHtml(text, { target: '_blank' }) }}></span>

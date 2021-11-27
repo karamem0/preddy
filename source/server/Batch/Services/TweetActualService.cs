@@ -7,12 +7,14 @@
 //
 
 using Karamem0.Preddy.Models;
-using Karamem0.Preddy.Models.Database;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using Database = Karamem0.Preddy.Models.Database;
+using Entities = Karamem0.Preddy.Batch.Services.Entities;
 
 namespace Karamem0.Preddy.Batch.Services
 {
@@ -20,14 +22,17 @@ namespace Karamem0.Preddy.Batch.Services
     public class TweetActualService
     {
 
-        private readonly DatabaseContext context;
+        private readonly DatabaseContext databaseContext;
 
-        public TweetActualService(DatabaseContext context)
+        private readonly BlobStorageContext blobStorageContext;
+
+        public TweetActualService(DatabaseContext databaseContext, BlobStorageContext blobStorageContext)
         {
-            this.context = context;
+            this.databaseContext = databaseContext;
+            this.blobStorageContext = blobStorageContext;
         }
 
-        public async IAsyncEnumerable<TweetActual> SearchAsync()
+        public async IAsyncEnumerable<Database.TweetActual> SearchAsync()
         {
             var minDate = DateTime.Now.Date.AddDays(-30);
             var maxDate = DateTime.Now.Date;
@@ -35,11 +40,11 @@ namespace Karamem0.Preddy.Batch.Services
             {
                 var minTweetedAt = date.ToUniversalTime();
                 var maxTweetedAt = date.AddDays(1).ToUniversalTime();
-                var tweetCount = await this.context.TweetStatuses
+                var tweetCount = await this.databaseContext.TweetStatuses
                     .Where(item => item.TweetedAt >= minTweetedAt)
                     .Where(item => item.TweetedAt < maxTweetedAt)
                     .CountAsync();
-                yield return new TweetActual()
+                yield return new Database.TweetActual()
                 {
                     Date = date,
                     Year = date.Year,
@@ -50,14 +55,15 @@ namespace Karamem0.Preddy.Batch.Services
             }
         }
 
-        public async Task AddOrUpdateAsync(TweetActual newValue)
+        public async Task AddOrUpdateAsync(Database.TweetActual newValue)
         {
-            var oldValue = this.context.TweetActuals.SingleOrDefault(item => item.Date == newValue.Date);
+            var oldValue = this.databaseContext.TweetActuals
+                .SingleOrDefault(item => item.Date == newValue.Date);
             if (oldValue is null)
             {
                 newValue.CreatedAt = DateTime.UtcNow;
                 newValue.UpdatedAt = DateTime.UtcNow;
-                this.context.TweetActuals.Add(newValue);
+                _ = this.databaseContext.TweetActuals.Add(newValue);
             }
             else
             {
@@ -67,7 +73,25 @@ namespace Karamem0.Preddy.Batch.Services
                 oldValue.Count = newValue.Count;
                 oldValue.UpdatedAt = DateTime.UtcNow;
             }
-            await this.context.SaveChangesAsync();
+            _ = await this.databaseContext.SaveChangesAsync();
+        }
+
+        public async Task ExportAsync()
+        {
+            await this.blobStorageContext.UploadAsync(
+                "tweetactual.csv",
+                await this.databaseContext.TweetActuals
+                .OrderBy(item => item.Date)
+                .Select(item => new Entities.TweetActual()
+                {
+                    Date = item.Date,
+                    Year = item.Year,
+                    Month = item.Month,
+                    Day = item.Day,
+                    Count = item.Count,
+                })
+                .ToArrayAsync()
+            );
         }
 
     }

@@ -33,7 +33,7 @@ namespace Karamem0.Preddy.Batch.Services
             {
                 newValue.CreatedAt = DateTime.UtcNow;
                 newValue.UpdatedAt = DateTime.UtcNow;
-                this.context.TweetForecasts.Add(newValue);
+                _ = this.context.TweetForecasts.Add(newValue);
             }
             else
             {
@@ -43,7 +43,7 @@ namespace Karamem0.Preddy.Batch.Services
                 oldValue.Count = newValue.Count;
                 oldValue.UpdatedAt = DateTime.UtcNow;
             }
-            await this.context.SaveChangesAsync();
+            _ = await this.context.SaveChangesAsync();
         }
 
     }

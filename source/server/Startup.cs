@@ -35,41 +35,33 @@ namespace Karamem0.Preddy
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-            services.AddHttpClient();
-            services.AddCors(options =>
-            {
-                options.AddDefaultPolicy(builder =>
-                {
-                    builder
-                        .AllowAnyOrigin()
-                        .AllowAnyHeader()
-                        .AllowAnyMethod();
-                });
-            });
-            services.AddMicrosoftIdentityWebApiAuthentication(this.Configuration, "AzureAD");
-            services.AddDbContext(this.Configuration);
-            services.AddAzureMLContext(this.Configuration);
-            services.AddTwitterContext(this.Configuration);
-            services.AddBatchServices();
-            services.AddServices();
+            _ = services.AddControllers();
+            _ = services.AddHttpClient();
+            _ = services.AddCors(options => options.AddDefaultPolicy(builder => _ = builder
+        .AllowAnyOrigin()
+        .AllowAnyHeader()
+        .AllowAnyMethod()));
+            _ = services.AddMicrosoftIdentityWebApiAuthentication(this.Configuration, "AzureAD");
+            _ = services.AddDbContext(this.Configuration);
+            _ = services.AddAzureMLContext(this.Configuration);
+            _ = services.AddBlobStorageContext(this.Configuration);
+            _ = services.AddTwitterContext(this.Configuration);
+            _ = services.AddBatchServices();
+            _ = services.AddServices();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
-                app.UseCors();
+                _ = app.UseDeveloperExceptionPage();
+                _ = app.UseCors();
             }
-            app.UseHttpsRedirection();
-            app.UseRouting();
-            app.UseAuthentication();
-            app.UseAuthorization();
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            _ = app.UseHttpsRedirection();
+            _ = app.UseRouting();
+            _ = app.UseAuthentication();
+            _ = app.UseAuthorization();
+            _ = app.UseEndpoints(endpoints => _ = endpoints.MapControllers());
         }
 
     }

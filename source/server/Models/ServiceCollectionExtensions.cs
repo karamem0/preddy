@@ -23,10 +23,14 @@ namespace Karamem0.Preddy.Models
         public static IServiceCollection AddDbContext(this IServiceCollection services, IConfiguration configuration)
         {
             return services
-                .AddDbContext<DatabaseContext>(options =>
-                {
-                    options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
-                });
+                .AddDbContext<DatabaseContext>(options => _ = options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+        }
+
+        public static IServiceCollection AddBlobStorageContext(this IServiceCollection services, IConfiguration configuration)
+        {
+            return services
+                .Configure<BlobStorageOptions>(configuration.GetSection("BlobStorage"))
+                .AddTransient<BlobStorageContext>();
         }
 
         public static IServiceCollection AddAzureMLContext(this IServiceCollection services, IConfiguration configuration)

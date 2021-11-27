@@ -22,10 +22,7 @@ namespace Karamem0.Preddy
         private static void Main(string[] args)
         {
             Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(builder =>
-                {
-                    builder.UseStartup<Startup>();
-                })
+                .ConfigureWebHostDefaults(builder => _ = builder.UseStartup<Startup>())
                 .Build()
                 .Run();
         }
