@@ -28,22 +28,18 @@ namespace Karamem0.Preddy.Batch.Controllers
 
         private readonly TweetForecastService tweetForecastService;
 
-        private readonly AzureMLService azureMLService;
-
         public TweetForecastController(
             ILogger<TweetForecastController> logger,
-            TweetForecastService tweetForecastService,
-            AzureMLService azureMLService)
+            TweetForecastService tweetForecastService)
         {
             this.logger = logger;
             this.tweetForecastService = tweetForecastService;
-            this.azureMLService = azureMLService;
         }
 
         [HttpPost()]
         public async Task<IActionResult> PostAsync()
         {
-            var forecasts = this.azureMLService.SearchAsync();
+            var forecasts = this.tweetForecastService.ImportAsync();
             await foreach (var forecast in forecasts)
             {
                 await this.tweetForecastService.AddOrUpdateAsync(forecast);

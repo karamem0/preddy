@@ -21,7 +21,6 @@ namespace Karamem0.Preddy.Batch.Services
         public static IServiceCollection AddBatchServices(this IServiceCollection services)
         {
             return services
-                .AddTransient<AzureMLService>()
                 .AddTransient<TwitterService>()
                 .AddTransient<TweetActualService>()
                 .AddTransient<TweetForecastService>()

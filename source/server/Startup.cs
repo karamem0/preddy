@@ -43,7 +43,6 @@ namespace Karamem0.Preddy
         .AllowAnyMethod()));
             _ = services.AddMicrosoftIdentityWebApiAuthentication(this.Configuration, "AzureAD");
             _ = services.AddDbContext(this.Configuration);
-            _ = services.AddAzureMLContext(this.Configuration);
             _ = services.AddBlobStorageContext(this.Configuration);
             _ = services.AddTwitterContext(this.Configuration);
             _ = services.AddBatchServices();

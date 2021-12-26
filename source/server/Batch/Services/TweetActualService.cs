@@ -6,15 +6,15 @@
 // https://github.com/karamem0/preddy/blob/master/LICENSE
 //
 
+using Karamem0.Preddy.Batch.Services.Entities;
 using Karamem0.Preddy.Models;
+using Karamem0.Preddy.Models.Database;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Database = Karamem0.Preddy.Models.Database;
-using Entities = Karamem0.Preddy.Batch.Services.Entities;
 
 namespace Karamem0.Preddy.Batch.Services
 {
@@ -32,7 +32,7 @@ namespace Karamem0.Preddy.Batch.Services
             this.blobStorageContext = blobStorageContext;
         }
 
-        public async IAsyncEnumerable<Database.TweetActual> SearchAsync()
+        public async IAsyncEnumerable<TweetActual> SearchAsync()
         {
             var minDate = DateTime.Now.Date.AddDays(-30);
             var maxDate = DateTime.Now.Date;
@@ -44,7 +44,7 @@ namespace Karamem0.Preddy.Batch.Services
                     .Where(item => item.TweetedAt >= minTweetedAt)
                     .Where(item => item.TweetedAt < maxTweetedAt)
                     .CountAsync();
-                yield return new Database.TweetActual()
+                yield return new TweetActual()
                 {
                     Date = date,
                     Year = date.Year,
@@ -55,7 +55,7 @@ namespace Karamem0.Preddy.Batch.Services
             }
         }
 
-        public async Task AddOrUpdateAsync(Database.TweetActual newValue)
+        public async Task AddOrUpdateAsync(TweetActual newValue)
         {
             var oldValue = this.databaseContext.TweetActuals
                 .SingleOrDefault(item => item.Date == newValue.Date);
@@ -79,10 +79,10 @@ namespace Karamem0.Preddy.Batch.Services
         public async Task ExportAsync()
         {
             await this.blobStorageContext.UploadAsync(
-                "tweetactual.csv",
+                "experimentinput.csv",
                 await this.databaseContext.TweetActuals
                 .OrderBy(item => item.Date)
-                .Select(item => new Entities.TweetActual()
+                .Select(item => new ExperimentInput()
                 {
                     Date = item.Date,
                     Year = item.Year,

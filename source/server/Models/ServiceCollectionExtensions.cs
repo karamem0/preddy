@@ -33,13 +33,6 @@ namespace Karamem0.Preddy.Models
                 .AddTransient<BlobStorageContext>();
         }
 
-        public static IServiceCollection AddAzureMLContext(this IServiceCollection services, IConfiguration configuration)
-        {
-            return services
-                .Configure<AzureMLOptions>(configuration.GetSection("AzureML"))
-                .AddTransient<AzureMLContext>();
-        }
-
         public static IServiceCollection AddTwitterContext(this IServiceCollection services, IConfiguration configuration)
         {
             return services

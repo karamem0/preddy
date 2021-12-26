@@ -15,10 +15,10 @@ using System.Threading.Tasks;
 namespace Karamem0.Preddy.Batch.Services.Entities
 {
 
-    public class TweetActual
+    public class ExperimentInput
     {
 
-        public TweetActual()
+        public ExperimentInput()
         {
         }
 

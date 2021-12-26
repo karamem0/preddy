@@ -32,6 +32,17 @@ namespace Karamem0.Preddy.Models
             this.options = options.Value;
         }
 
+        public async Task<IEnumerable<T>> DownloadAsync<T>(string name)
+        {
+            var endpoint = this.options.Endpoint ?? throw new ArgumentNullException(this.options.Endpoint);
+            var culture = CultureInfo.InvariantCulture;
+            var credential = new DefaultAzureCredential();
+            var client = new BlobContainerClient(new Uri(endpoint), credential);
+            var response = await client.GetBlobClient(name).DownloadAsync();
+            var reader = new CsvReader(new StreamReader(response.Value.Content), culture);
+            return reader.GetRecords<T>();
+        }
+
         public async Task UploadAsync<T>(string name, T[] values)
         {
             var endpoint = this.options.Endpoint ?? throw new ArgumentNullException(this.options.Endpoint);
