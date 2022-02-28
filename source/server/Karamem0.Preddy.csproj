@@ -1,13 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <PackageId>Preddy</PackageId>
-    <Version>2.1.0</Version>
+    <Version>2.3.0</Version>
     <Authors>karamem0</Authors>
     <Company>karamem0</Company>
     <Product>Preddy</Product>
-    <Copyright>Copyright (c) 2021 karamem0</Copyright>
+    <Copyright>Copyright (c) 2022 karamem0</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/karamem0/preddy</PackageProjectUrl>
     <AssemblyVersion>2.1.0</AssemblyVersion>

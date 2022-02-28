@@ -1,9 +1,9 @@
 //
-// Copyright (c) 2021 karamem0
+// Copyright (c) 2022 karamem0
 //
 // This software is released under the MIT License.
 //
-// https://github.com/karamem0/preddy/blob/master/LICENSE
+// https://github.com/karamem0/preddy/blob/main/LICENSE
 //
 
 import React from 'react';
@@ -50,7 +50,15 @@ const TweetSummaryChart: React.FC<TweetSummaryChartProps> = (props: TweetSummary
             <CartesianGrid strokeDasharray="2" />
             <Line
               activeDot={{
-                r: 6
+                r: 6,
+                onClick: (event: unknown, value: unknown) => {
+                  if (!setDate) {
+                    return;
+                  }
+                  const args = value as TweetSummaryEventArgs;
+                  const date = args.payload.date;
+                  setDate(date);
+                }
               }}
               dataKey="forecast"
               dot={{

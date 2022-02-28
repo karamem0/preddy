@@ -16,11 +16,12 @@ jobs:
           node-version: 16.x
       - name: Build client
         env:
-          PUBLIC_URL: ${{secrets.PUBLIC_URL}}
+          REACT_APP_CLIENT_URL: ${{secrets.REACT_APP_CLIENT_URL}}
           REACT_APP_SERVER_URL: ${{secrets.REACT_APP_SERVER_URL}}
         run: |
           npm ci
           npm run build
+          npm run test
         working-directory: source/client
       - name: Copy files
         shell: pwsh
@@ -30,7 +31,7 @@ jobs:
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 5.x
+          dotnet-version: 6.x
       - name: Build server
         run: |
           dotnet restore source/server

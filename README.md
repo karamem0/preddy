@@ -1,7 +1,7 @@
 # Preddy
 
 [![.github/workflows/main.yml](https://github.com/karamem0/preddy/actions/workflows/main.yml/badge.svg)](https://github.com/karamem0/preddy/actions/workflows/main.yml)
-[![License](https://img.shields.io/github/license/karamem0/preddy.svg)](https://github.com/karamem0/preddy/blob/master/LICENSE)
+[![License](https://img.shields.io/github/license/karamem0/preddy.svg)](https://github.com/karamem0/preddy/blob/main/LICENSE)
 
 [ドクターイエロー運行予測](https://preddy.karamem0.dev)
 

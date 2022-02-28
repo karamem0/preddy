@@ -1,9 +1,9 @@
 //
-// Copyright (c) 2021 karamem0
+// Copyright (c) 2022 karamem0
 //
 // This software is released under the MIT License.
 //
-// https://github.com/karamem0/preddy/blob/master/LICENSE
+// https://github.com/karamem0/preddy/blob/main/LICENSE
 //
 
 import { defineMessages } from 'react-intl';
@@ -96,6 +96,22 @@ const messages = defineMessages({
   ABOUT_SITE_CONTACT: {
     id: 'ABOUT_SITE_CONTACT',
     defaultMessage: 'このサイトについてのお問い合わせは {twitter} までお願いします。'
+  },
+  PRIVACY_URL: {
+    id: 'PRIVACY_URL',
+    defaultMessage: 'https://github.com/karamem0/preddy/blob/main/PRIVACY.md'
+  },
+  PRIVACY_TITLE: {
+    id: 'PRIVACY_TITLE',
+    defaultMessage: 'プライバシー ポリシー'
+  },
+  TERMS_OF_USE_URL: {
+    id: 'TERMS_OF_USE_URL',
+    defaultMessage: 'https://github.com/karamem0/preddy/blob/main/TERMS_OF_USE.md'
+  },
+  TERMS_OF_USE_TITLE: {
+    id: 'TERMS_OF_USE_TITLE',
+    defaultMessage: '利用規約'
   }
 });
 

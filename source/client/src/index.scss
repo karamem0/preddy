@@ -1,9 +1,9 @@
 //
-// Copyright (c) 2021 karamem0
+// Copyright (c) 2022 karamem0
 //
 // This software is released under the MIT License.
 //
-// https://github.com/karamem0/preddy/blob/master/LICENSE
+// https://github.com/karamem0/preddy/blob/main/LICENSE
 //
 
 @import-normalize;
@@ -193,15 +193,30 @@ p {
     }
   }
   .footer {
-    display: flex;
+    display: grid;
     grid-row: 4 / 5;
     grid-column: 1 / 3;
     align-items: center;
     justify-content: center;
     .github {
-      width: 1.5rem;
-      height: 1.5rem;
-      color: #e2e2f6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      svg {
+        width: 1.5rem;
+        height: 1.5rem;
+        color: #e2e2f6;
+      }
+    }
+    .contract {
+      display: flex;
+      grid-gap: 0.25rem;
+      align-items: center;
+      justify-content: center;
+      a {
+        font-weight: normal;
+        color: #252423;
+      }
     }
   }
 }
