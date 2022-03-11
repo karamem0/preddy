@@ -8,7 +8,7 @@
 
 import React from 'react';
 
-import { Avatar } from '@fluentui/react-northstar';
+import { Avatar, Image } from '@fluentui/react-northstar';
 import linkifyHtml from 'linkifyjs/html';
 
 import useBlobUrl from '../hooks/use-blob-url';
@@ -38,24 +38,25 @@ const TweetStatusItem: React.FC<TweetStatusItemProps> = (props: TweetStatusItemP
     userUrl
   } = props;
   const profileImageUrl = useBlobUrl(props.profileImageUrl);
+  const mediaUrl = useBlobUrl(props.mediaUrl);
   const intl = useIntl();
 
   return (
     <div className="item">
-      <div className="image">
+      <div className="profile-image">
         <Avatar
           image={profileImageUrl}
           size="large" />
       </div>
       <div className="header">
         <a
-          className="username"
+          className="user-name"
           href={userUrl}>
           {userName}
         </a>
-        <span className="screenname">{screenName}</span>
+        <span className="screen-name">{screenName}</span>
         <a
-          className="tweetedat"
+          className="tweeted-at"
           href={statusUrl}>
           {
             intl.formatDate(new Date(tweetedAt.toLocaleString()), {
@@ -71,6 +72,11 @@ const TweetStatusItem: React.FC<TweetStatusItemProps> = (props: TweetStatusItemP
       </div>
       <div className="text">
         <span dangerouslySetInnerHTML={{ __html: linkifyHtml(text, { target: '_blank' }) }}></span>
+      </div>
+      <div className="media">
+        <Image
+          fluid
+          src={mediaUrl} />
       </div>
     </div>
   );

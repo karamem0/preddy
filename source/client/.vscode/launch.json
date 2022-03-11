@@ -6,7 +6,12 @@
       "request": "launch",
       "name": "Launch Chrome",
       "url": "http://localhost:3000",
-      "webRoot": "${workspaceFolder}"
+      "webRoot": "${workspaceFolder}",
+      "runtimeArgs": [
+        "-incognito"
+      ],
+      "preLaunchTask": "react-start",
+      "postDebugTask": "terminate-react-start"
     }
   ]
 }
