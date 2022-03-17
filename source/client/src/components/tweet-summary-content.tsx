@@ -7,15 +7,15 @@
 //
 
 import React from 'react';
-
 import { FormattedMessage, useIntl } from 'react-intl';
-import messages from '../i18n/messages';
 
 import { Loader } from '@fluentui/react-northstar';
 
+import useTweetSummary from '../hooks/use-tweet-summary';
+import messages from '../i18n/messages';
+
 import TweetSummaryChart from './tweet-summary-chart';
 import TweetSumamryHeader from './tweet-summary-header';
-import useTweetSummary from '../hooks/use-tweet-summary';
 
 const TweetSumamryContent: React.FC = () => {
 
@@ -54,7 +54,8 @@ const TweetSumamryContent: React.FC = () => {
         minDate={value.minDate}
         onNext={() => callbacks.nextCallback(date)}
         onPrev={() => callbacks.prevCallback(date)}
-        onToday={() => callbacks.todayCallback()} />
+        onToday={() => callbacks.todayCallback()}
+      />
       <TweetSummaryChart
         items={
             value.items.map(item => ({
@@ -62,7 +63,8 @@ const TweetSumamryContent: React.FC = () => {
               forecast: item.forecast,
               actual: item.actual
             }))
-          } />
+          }
+      />
     </div>
   );
 

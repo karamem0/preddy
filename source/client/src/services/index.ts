@@ -7,27 +7,27 @@
 //
 
 interface TweetSummary {
-  minDate: string;
-  maxDate: string;
+  minDate: string,
+  maxDate: string,
   items: {
-    date: string;
-    forecast: number;
-    actual: number;
+    date: string,
+    forecast: number,
+    actual: number
   }[]
 }
 
 interface TweetStatus {
   items: {
-    statusId: number;
-    userId: number;
-    userName: string;
-    screenName: string;
-    text: string;
-    tweetedAt: string;
-    profileImageUrl: string;
-    statusUrl: string;
-    userUrl: string;
-    mediaUrl: string;
+    statusId: number,
+    userId: number,
+    userName: string,
+    screenName: string,
+    text: string,
+    tweetedAt: string,
+    profileImageUrl: string,
+    statusUrl: string,
+    userUrl: string,
+    mediaUrl: string
   }[]
 }
 

@@ -11,23 +11,23 @@ import React from 'react';
 import { fetchTweetSummary } from '../services';
 
 interface TweetSummary {
-  minDate: Date;
-  maxDate: Date;
+  minDate: Date,
+  maxDate: Date,
   items: {
-    date: Date;
-    forecast: number;
-    actual: number;
+    date: Date,
+    forecast: number,
+    actual: number
   }[]
 }
 
 const useTweetSummary = (): {
-  date: Date;
-  value?: TweetSummary;
-  loading : boolean;
+  date: Date,
+  value?: TweetSummary,
+  loading : boolean,
   callbacks: {
-    todayCallback: () => void;
-    prevCallback: (date: Date) => void;
-    nextCallback: (date: Date) => void;
+    todayCallback: () => void,
+    prevCallback: (date: Date) => void,
+    nextCallback: (date: Date) => void
   }
 } => {
 

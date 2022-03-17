@@ -11,18 +11,11 @@
     "plugin:@typescript-eslint/recommended",
     "standard"
   ],
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    },
-    "ecmaVersion": 12,
-    "sourceType": "module"
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   },
-  "plugins": [
-    "react",
-    "@typescript-eslint"
-  ],
   "rules": {
     "array-bracket-spacing": [
       "error",
@@ -47,7 +40,17 @@
       "error",
       "windows"
     ],
+    "no-alert": "error",
+    "no-console": [
+      "warn",
+      {
+        "allow": [
+          "error"
+        ]
+      }
+    ],
     "no-use-before-define": "off",
+    "no-unused-vars": "off",
     "padded-blocks": "off",
     "quotes": [
       "error",
@@ -57,9 +60,76 @@
       "error",
       "always"
     ],
+    "sort-imports": "off",
+    "@typescript-eslint/array-type": [
+      "error",
+      {
+        "default": "array"
+      }
+    ],
+    "@typescript-eslint/member-delimiter-style": [
+      "error",
+      {
+        "multiline": {
+          "delimiter": "comma",
+          "requireLast": false
+        },
+        "singleline": {
+          "delimiter": "comma",
+          "requireLast": false
+        }
+      }
+    ],
+    "@typescript-eslint/no-unused-vars": "error",
+    "import/order": [
+      "error",
+      {
+        "pathGroups": [
+          {
+            "pattern": "react**",
+            "group": "builtin",
+            "position": "before"
+          },
+          {
+            "pattern": "@testing-library/**",
+            "group": "builtin",
+            "position": "after"
+          },
+          {
+            "pattern": "@fluentui/**",
+            "group": "builtin",
+            "position": "after"
+          },
+          {
+            "pattern": "@microsoft/**",
+            "group": "builtin",
+            "position": "after"
+          },
+          {
+            "pattern": "@azure/**",
+            "group": "builtin",
+            "position": "after"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": [
+          "react**",
+          "@testing-library/**",
+          "@fluentui/**",
+          "@microsoft/**",
+          "@azure/**"
+        ],
+        "alphabetize": {
+          "order": "asc"
+        },
+        "newlines-between": "always"
+      }
+    ],
     "react/jsx-closing-bracket-location": [
       "error",
-      "after-props"
+      {
+        "selfClosing": "tag-aligned",
+        "nonEmpty": "after-props"
+      }
     ],
     "react/jsx-first-prop-new-line": [
       "error",

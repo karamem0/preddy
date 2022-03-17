@@ -12,22 +12,22 @@ import { fetchTweetStatus } from '../services';
 
 interface TweetStatus {
   items: {
-    statusId: number;
-    userId: number;
-    userName: string;
-    screenName: string;
-    text: string;
-    tweetedAt: Date;
-    profileImageUrl: string;
-    statusUrl: string;
-    userUrl: string;
-    mediaUrl: string;
+    statusId: number,
+    userId: number,
+    userName: string,
+    screenName: string,
+    text: string,
+    tweetedAt: Date,
+    profileImageUrl: string,
+    statusUrl: string,
+    userUrl: string,
+    mediaUrl: string
   }[]
 }
 
 const useTweetStatus = (date?: Date): {
-  value?: TweetStatus;
-  loading : boolean;
+  value?: TweetStatus,
+  loading : boolean
 } => {
 
   const [ value, setValue ] = React.useState<TweetStatus>();

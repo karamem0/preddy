@@ -7,15 +7,15 @@
 //
 
 import React from 'react';
-
 import { FormattedMessage, useIntl } from 'react-intl';
-import messages from '../i18n/messages';
 
 import { Loader } from '@fluentui/react-northstar';
 
 import AppContext from '../contexts/app-context';
-import TweetStatusItem from './tweet-status-item';
 import useTweetStatus from '../hooks/use-tweet-status';
+import messages from '../i18n/messages';
+
+import TweetStatusItem from './tweet-status-item';
 
 const TweetStatusContent: React.FC = () => {
 
@@ -66,14 +66,16 @@ const TweetStatusContent: React.FC = () => {
                 month: 'numeric',
                 day: 'numeric'
               })
-          }} />
+          }}
+        />
       </div>
       <div className="list">
         {
           value.items.map(item => (
             <TweetStatusItem
               key={item.statusId}
-              {...item} />
+              {...item}
+            />
           ))
         }
       </div>

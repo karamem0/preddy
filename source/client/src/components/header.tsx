@@ -7,16 +7,15 @@
 //
 
 import React from 'react';
-
 import { FormattedMessage, useIntl } from 'react-intl';
-import messages from '../i18n/messages';
-
 import {
   FacebookIcon,
   FacebookShareButton,
   TwitterIcon,
   TwitterShareButton
 } from 'react-share';
+
+import messages from '../i18n/messages';
 
 const Header: React.FC = () => {
 
@@ -36,14 +35,16 @@ const Header: React.FC = () => {
           url={process.env.REACT_APP_CLIENT_URL}>
           <FacebookIcon
             round
-            size={24} />
+            size={24}
+          />
         </FacebookShareButton>
         <TwitterShareButton
           title={intl.formatMessage(messages.APP_TITLE)}
           url={process.env.REACT_APP_CLIENT_URL}>
           <TwitterIcon
             round
-            size={24} />
+            size={24}
+          />
         </TwitterShareButton>
       </div>
     </header>

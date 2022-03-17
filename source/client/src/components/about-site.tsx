@@ -7,8 +7,8 @@
 //
 
 import React from 'react';
-
 import { FormattedMessage, useIntl } from 'react-intl';
+
 import messages from '../i18n/messages';
 
 const AboutSite: React.FC = () => {
@@ -37,7 +37,8 @@ const AboutSite: React.FC = () => {
                 <a href={intl.formatMessage(messages.APP_TWITTER_URL)}>
                   <FormattedMessage {...messages.APP_TWITTER_USERNAME} />
                 </a>)
-            }} />
+            }}
+          />
         </p>
       </div>
     </section>

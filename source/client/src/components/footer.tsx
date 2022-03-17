@@ -7,13 +7,13 @@
 //
 
 import React from 'react';
+import { useIntl } from 'react-intl';
 
 import { Text } from '@fluentui/react-northstar';
 
-import { useIntl } from 'react-intl';
-import messages from '../i18n/messages';
-
 import { VscGithub } from 'react-icons/vsc';
+
+import messages from '../i18n/messages';
 
 const Footer: React.FC = () => {
 

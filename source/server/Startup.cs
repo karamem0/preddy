@@ -38,9 +38,10 @@ namespace Karamem0.Preddy
             _ = services.AddControllers();
             _ = services.AddHttpClient();
             _ = services.AddCors(options => options.AddDefaultPolicy(builder => _ = builder
-        .AllowAnyOrigin()
-        .AllowAnyHeader()
-        .AllowAnyMethod()));
+                .AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod()));
+            _ = services.AddApplicationInsightsTelemetry();
             _ = services.AddMicrosoftIdentityWebApiAuthentication(this.Configuration, "AzureAD");
             _ = services.AddDbContext(this.Configuration);
             _ = services.AddBlobStorageContext(this.Configuration);

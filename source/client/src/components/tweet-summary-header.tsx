@@ -7,25 +7,24 @@
 //
 
 import React from 'react';
-
 import { useIntl } from 'react-intl';
-import messages from '../i18n/messages';
 
-import { Button } from '@fluentui/react-northstar';
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
   GotoTodayIcon
 } from '@fluentui/react-icons-mdl2';
+import { Button } from '@fluentui/react-northstar';
 
 import AppContext from '../contexts/app-context';
+import messages from '../i18n/messages';
 
 interface TweetSummaryHeaderProps {
-  minDate?: Date;
-  maxDate?: Date;
-  onToday?: () => void;
-  onPrev?: () => void;
-  onNext?: () => void;
+  minDate?: Date,
+  maxDate?: Date,
+  onToday?: () => void,
+  onPrev?: () => void,
+  onNext?: () => void
 }
 
 const TweetSummaryHeader: React.FC<TweetSummaryHeaderProps> = (props: TweetSummaryHeaderProps) => {
@@ -83,7 +82,8 @@ const TweetSummaryHeader: React.FC<TweetSummaryHeaderProps> = (props: TweetSumma
             }
             setDate(undefined);
             onToday();
-          }} />
+          }}
+        />
         <Button
           icon={<ChevronLeftIcon />}
           iconOnly
@@ -98,7 +98,8 @@ const TweetSummaryHeader: React.FC<TweetSummaryHeaderProps> = (props: TweetSumma
             }
             setDate(undefined);
             onPrev();
-          }} />
+          }}
+        />
         <Button
           icon={<ChevronRightIcon />}
           iconOnly
@@ -113,7 +114,8 @@ const TweetSummaryHeader: React.FC<TweetSummaryHeaderProps> = (props: TweetSumma
             }
             setDate(undefined);
             onNext();
-          }} />
+          }}
+        />
       </div>
     </div>
   );

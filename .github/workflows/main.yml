@@ -18,6 +18,7 @@ jobs:
         env:
           REACT_APP_CLIENT_URL: ${{secrets.REACT_APP_CLIENT_URL}}
           REACT_APP_SERVER_URL: ${{secrets.REACT_APP_SERVER_URL}}
+          REACT_APP_APP_INSIGHTS_INSTRUMENTATION_KEY: ${{secrets.REACT_APP_APP_INSIGHTS_INSTRUMENTATION_KEY}}
         run: |
           npm ci
           npm run build

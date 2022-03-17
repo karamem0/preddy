@@ -7,24 +7,25 @@
 //
 
 import React from 'react';
+import { useIntl } from 'react-intl';
 
 import { Avatar, Image } from '@fluentui/react-northstar';
+
 import linkifyHtml from 'linkifyjs/html';
 
 import useBlobUrl from '../hooks/use-blob-url';
-import { useIntl } from 'react-intl';
 
 interface TweetStatusItemProps {
-  statusId: number;
-  userId: number;
-  userName: string;
-  screenName: string;
-  text: string;
-  tweetedAt: Date;
-  profileImageUrl: string;
-  statusUrl: string;
-  userUrl: string;
-  mediaUrl: string;
+  statusId: number,
+  userId: number,
+  userName: string,
+  screenName: string,
+  text: string,
+  tweetedAt: Date,
+  profileImageUrl: string,
+  statusUrl: string,
+  userUrl: string,
+  mediaUrl: string
 }
 
 const TweetStatusItem: React.FC<TweetStatusItemProps> = (props: TweetStatusItemProps) => {
@@ -46,7 +47,8 @@ const TweetStatusItem: React.FC<TweetStatusItemProps> = (props: TweetStatusItemP
       <div className="profile-image">
         <Avatar
           image={profileImageUrl}
-          size="large" />
+          size="large"
+        />
       </div>
       <div className="header">
         <a
@@ -76,7 +78,8 @@ const TweetStatusItem: React.FC<TweetStatusItemProps> = (props: TweetStatusItemP
       <div className="media">
         <Image
           fluid
-          src={mediaUrl} />
+          src={mediaUrl}
+        />
       </div>
     </div>
   );

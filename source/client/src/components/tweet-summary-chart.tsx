@@ -7,9 +7,7 @@
 //
 
 import React from 'react';
-
 import { useIntl } from 'react-intl';
-import messages from '../i18n/messages';
 
 import {
   CartesianGrid,
@@ -21,15 +19,16 @@ import {
 } from 'recharts';
 
 import AppContext from '../contexts/app-context';
+import messages from '../i18n/messages';
 
 interface TweetSummary {
-  date: Date;
-  forecast: number;
-  actual: number;
+  date: Date,
+  forecast: number,
+  actual: number
 }
 
 interface TweetSummaryEventArgs {
-  payload: TweetSummary;
+  payload: TweetSummary
 }
 
 interface TweetSummaryChartProps {
@@ -66,7 +65,8 @@ const TweetSummaryChart: React.FC<TweetSummaryChartProps> = (props: TweetSummary
               }}
               name={intl.formatMessage(messages.TWEET_SUMMARY_FORECAST)}
               stroke="#0078d4"
-              type="monotone" />
+              type="monotone"
+            />
             <Line
               activeDot={{
                 r: 6,
@@ -85,7 +85,8 @@ const TweetSummaryChart: React.FC<TweetSummaryChartProps> = (props: TweetSummary
               }}
               name={intl.formatMessage(messages.TWEET_SUMMARY_ACTUAL)}
               stroke="#d13438"
-              type="monotone" />
+              type="monotone"
+            />
             <Tooltip
               labelFormatter={
               (value: Date) =>
@@ -95,7 +96,8 @@ const TweetSummaryChart: React.FC<TweetSummaryChartProps> = (props: TweetSummary
                     year: 'numeric',
                     month: 'numeric',
                     day: 'numeric'
-                  })} />
+                  })}
+            />
             <XAxis
               dataKey="date"
               tickFormatter={
@@ -105,7 +107,8 @@ const TweetSummaryChart: React.FC<TweetSummaryChartProps> = (props: TweetSummary
                     {
                       month: 'numeric',
                       day: 'numeric'
-                    })} />
+                    })}
+            />
           </LineChart>
         </ResponsiveContainer>
       </div>
