@@ -6,16 +6,18 @@
 // https://github.com/karamem0/preddy/blob/main/LICENSE
 //
 
-import { ReactPlugin } from '@microsoft/applicationinsights-react-js';
+import React from 'react';
+
+import { ReactPlugin, withAITracking } from '@microsoft/applicationinsights-react-js';
 import { ApplicationInsights } from '@microsoft/applicationinsights-web';
 
 import { createBrowserHistory } from 'history';
 
-const browserHistory = createBrowserHistory();
+const browserHistory = createBrowserHistory({ basename: '' });
 
-export const reactPlugin = new ReactPlugin();
+const reactPlugin = new ReactPlugin();
 
-export const appInsights = new ApplicationInsights({
+const appInsights = new ApplicationInsights({
   config: {
     instrumentationKey: process.env.REACT_APP_APP_INSIGHTS_INSTRUMENTATION_KEY,
     extensions: [ reactPlugin ],
@@ -26,3 +28,14 @@ export const appInsights = new ApplicationInsights({
 });
 
 appInsights.loadAppInsights();
+
+const AppInsights = withAITracking(
+  reactPlugin,
+  ({ children }): React.ReactElement | null => (
+    <React.Fragment>
+      {children}
+    </React.Fragment>
+  ),
+  'AppInsights');
+
+export default AppInsights;

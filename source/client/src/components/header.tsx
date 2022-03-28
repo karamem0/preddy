@@ -35,16 +35,14 @@ const Header: React.FC = () => {
           url={process.env.REACT_APP_CLIENT_URL}>
           <FacebookIcon
             round
-            size={24}
-          />
+            size={24} />
         </FacebookShareButton>
         <TwitterShareButton
           title={intl.formatMessage(messages.APP_TITLE)}
           url={process.env.REACT_APP_CLIENT_URL}>
           <TwitterIcon
             round
-            size={24}
-          />
+            size={24} />
         </TwitterShareButton>
       </div>
     </header>

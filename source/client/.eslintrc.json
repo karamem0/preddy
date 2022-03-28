@@ -11,11 +11,6 @@
     "plugin:@typescript-eslint/recommended",
     "standard"
   ],
-  "settings": {
-    "react": {
-      "version": "detect"
-    }
-  },
   "rules": {
     "array-bracket-spacing": [
       "error",
@@ -126,10 +121,7 @@
     ],
     "react/jsx-closing-bracket-location": [
       "error",
-      {
-        "selfClosing": "tag-aligned",
-        "nonEmpty": "after-props"
-      }
+      "after-props"
     ],
     "react/jsx-first-prop-new-line": [
       "error",

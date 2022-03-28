@@ -66,16 +66,14 @@ const TweetStatusContent: React.FC = () => {
                 month: 'numeric',
                 day: 'numeric'
               })
-          }}
-        />
+          }} />
       </div>
       <div className="list">
         {
           value.items.map(item => (
             <TweetStatusItem
               key={item.statusId}
-              {...item}
-            />
+              {...item} />
           ))
         }
       </div>

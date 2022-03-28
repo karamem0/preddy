@@ -47,8 +47,7 @@ const TweetStatusItem: React.FC<TweetStatusItemProps> = (props: TweetStatusItemP
       <div className="profile-image">
         <Avatar
           image={profileImageUrl}
-          size="large"
-        />
+          size="large" />
       </div>
       <div className="header">
         <a
@@ -78,8 +77,7 @@ const TweetStatusItem: React.FC<TweetStatusItemProps> = (props: TweetStatusItemP
       <div className="media">
         <Image
           fluid
-          src={mediaUrl}
-        />
+          src={mediaUrl} />
       </div>
     </div>
   );

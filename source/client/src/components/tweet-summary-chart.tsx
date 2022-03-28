@@ -65,8 +65,7 @@ const TweetSummaryChart: React.FC<TweetSummaryChartProps> = (props: TweetSummary
               }}
               name={intl.formatMessage(messages.TWEET_SUMMARY_FORECAST)}
               stroke="#0078d4"
-              type="monotone"
-            />
+              type="monotone" />
             <Line
               activeDot={{
                 r: 6,
@@ -85,8 +84,7 @@ const TweetSummaryChart: React.FC<TweetSummaryChartProps> = (props: TweetSummary
               }}
               name={intl.formatMessage(messages.TWEET_SUMMARY_ACTUAL)}
               stroke="#d13438"
-              type="monotone"
-            />
+              type="monotone" />
             <Tooltip
               labelFormatter={
               (value: Date) =>
@@ -96,8 +94,7 @@ const TweetSummaryChart: React.FC<TweetSummaryChartProps> = (props: TweetSummary
                     year: 'numeric',
                     month: 'numeric',
                     day: 'numeric'
-                  })}
-            />
+                  })} />
             <XAxis
               dataKey="date"
               tickFormatter={
@@ -107,8 +104,7 @@ const TweetSummaryChart: React.FC<TweetSummaryChartProps> = (props: TweetSummary
                     {
                       month: 'numeric',
                       day: 'numeric'
-                    })}
-            />
+                    })} />
           </LineChart>
         </ResponsiveContainer>
       </div>

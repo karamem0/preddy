@@ -11,12 +11,10 @@ import { IntlProvider } from 'react-intl';
 
 import { Provider, teamsV2Theme } from '@fluentui/react-northstar';
 
-import { withAITracking } from '@microsoft/applicationinsights-react-js';
-
-import { reactPlugin } from '../app-insights';
 import AppContext from '../contexts/app-context';
 import translations from '../i18n/translations';
 
+import AppInsights from './app-insights';
 import Container from './container';
 
 const App: React.FC = () => {
@@ -25,17 +23,19 @@ const App: React.FC = () => {
   const [ locale ] = React.useState<string>('ja');
 
   return (
-    <AppContext.Provider value={[ date, setDate ]}>
-      <IntlProvider
-        locale={locale}
-        messages={translations[locale]}>
-        <Provider theme={teamsV2Theme}>
-          <Container />
-        </Provider>
-      </IntlProvider>
-    </AppContext.Provider>
+    <AppInsights>
+      <AppContext.Provider value={[ date, setDate ]}>
+        <IntlProvider
+          locale={locale}
+          messages={translations[locale]}>
+          <Provider theme={teamsV2Theme}>
+            <Container />
+          </Provider>
+        </IntlProvider>
+      </AppContext.Provider>
+    </AppInsights>
   );
 
 };
 
-export default withAITracking(reactPlugin, App);
+export default App;

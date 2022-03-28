@@ -54,8 +54,7 @@ const TweetSumamryContent: React.FC = () => {
         minDate={value.minDate}
         onNext={() => callbacks.nextCallback(date)}
         onPrev={() => callbacks.prevCallback(date)}
-        onToday={() => callbacks.todayCallback()}
-      />
+        onToday={() => callbacks.todayCallback()} />
       <TweetSummaryChart
         items={
             value.items.map(item => ({
@@ -63,8 +62,7 @@ const TweetSumamryContent: React.FC = () => {
               forecast: item.forecast,
               actual: item.actual
             }))
-          }
-      />
+          } />
     </div>
   );
 

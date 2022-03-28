@@ -82,8 +82,7 @@ const TweetSummaryHeader: React.FC<TweetSummaryHeaderProps> = (props: TweetSumma
             }
             setDate(undefined);
             onToday();
-          }}
-        />
+          }} />
         <Button
           icon={<ChevronLeftIcon />}
           iconOnly
@@ -98,8 +97,7 @@ const TweetSummaryHeader: React.FC<TweetSummaryHeaderProps> = (props: TweetSumma
             }
             setDate(undefined);
             onPrev();
-          }}
-        />
+          }} />
         <Button
           icon={<ChevronRightIcon />}
           iconOnly
@@ -114,8 +112,7 @@ const TweetSummaryHeader: React.FC<TweetSummaryHeaderProps> = (props: TweetSumma
             }
             setDate(undefined);
             onNext();
-          }}
-        />
+          }} />
       </div>
     </div>
   );
