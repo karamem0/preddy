@@ -10,7 +10,13 @@ export default defineConfig({
     outDir: 'build'
   },
   plugins: [
-    react(),
+    react({
+      babel: {
+        plugins: [
+          'react-intl-auto'
+        ]
+      }
+    }),
     env({
       prefix: 'REACT_APP'
     })

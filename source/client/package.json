@@ -1,6 +1,6 @@
 {
   "name": "preddy",
-  "version": "2.5.1",
+  "version": "2.6.0",
   "private": true,
   "dependencies": {
     "@fluentui/react-icons-mdl2": "1.3.5",
@@ -14,15 +14,14 @@
     "react-intl": "5.24.8",
     "react-router-dom": "5.2.1",
     "react-share": "4.4.0",
-    "recharts": "2.1.9",
-    "sass": "1.49.9",
-    "typescript": "4.5.5"
+    "recharts": "2.1.9"
   },
   "devDependencies": {
+    "@stylelint/postcss-css-in-js": "^0.37.2",
     "@testing-library/jest-dom": "5.16.3",
     "@testing-library/react": "12.1.4",
-    "@types/jest": "27.4.1",
     "@types/history": "4.7.11",
+    "@types/jest": "27.4.1",
     "@types/linkifyjs": "2.1.4",
     "@types/node": "16.11.26",
     "@types/react": "16.14.24",
@@ -30,20 +29,24 @@
     "@typescript-eslint/eslint-plugin": "5.12.1",
     "@typescript-eslint/parser": "5.12.1",
     "@vitejs/plugin-react": "1.2.0",
+    "babel-plugin-react-intl-auto": "^3.3.0",
     "eslint": "7.31.0",
     "eslint-config-standard": "16.0.3",
     "eslint-plugin-import": "2.25.4",
     "eslint-plugin-react": "7.29.4",
     "eslint-plugin-react-hooks": "4.3.0",
-    "extract-react-intl-messages": "4.1.1",
+    "extract-react-intl-messages": "^4.1.1",
     "jest": "27.5.1",
+    "normalize.css": "^8.0.1",
     "postcss": "8.4.12",
     "postcss-scss": "4.0.3",
+    "sass": "^1.50.1",
     "stylelint": "14.6.1",
     "stylelint-config-recess-order": "3.0.0",
     "stylelint-config-standard-scss": "3.0.0",
     "stylelint-scss": "4.2.0",
     "ts-jest": "27.1.4",
+    "typescript": "4.5",
     "vite": "2.8.6",
     "vite-plugin-env-compatible": "1.1.1"
   },
@@ -51,7 +54,9 @@
     "start": "vite",
     "build": "vite build",
     "test": "jest -i",
-    "test-ci": "jest -i --ci"
+    "test-ci": "jest -i --ci",
+    "eslint": "eslint src",
+    "stylelint": "stylelint src/**/*.{css,scss,js,ts,jsx,tsx}"
   },
   "browserslist": {
     "production": [

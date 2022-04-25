@@ -1,7 +1,16 @@
 {
+  "customSyntax": "postcss-scss",
   "extends": [
     "stylelint-config-recommended-scss",
     "stylelint-config-recess-order"
+  ],
+  "overrides": [
+    {
+      "customSyntax": "@stylelint/postcss-css-in-js",
+      "files": [
+        "src/**/*.{js,ts,jsx,tsx}"
+      ]
+    }
   ],
   "rules": {
     "comment-no-empty": null,
