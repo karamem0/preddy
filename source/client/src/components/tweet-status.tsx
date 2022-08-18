@@ -13,7 +13,7 @@ import messages from '../i18n/messages';
 
 import TweetStatusContent from './tweet-status-content';
 
-const TweetStatus: React.FC = () => {
+export const TweetStatus: React.FC = () => {
 
   return (
     <section className="tweet-status">
@@ -25,5 +25,3 @@ const TweetStatus: React.FC = () => {
   );
 
 };
-
-export default TweetStatus;

@@ -4,9 +4,14 @@ on:
       - main
       - develop
 
+env:
+  BUILD_VERSION: 3.0.0.${{github.run_number}}
+
 jobs:
   build:
     runs-on: windows-latest
+    env:
+      APP_INSIGHTS_INSTRUMENTATION_KEY: ${{secrets.APP_INSIGHTS_INSTRUMENTATION_KEY}}
     steps:
       - name: Checkout repos
         uses: actions/checkout@v2
@@ -14,50 +19,58 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 16.x
-      - name: Build client
-        env:
-          REACT_APP_CLIENT_URL: ${{secrets.REACT_APP_CLIENT_URL}}
-          REACT_APP_SERVER_URL: ${{secrets.REACT_APP_SERVER_URL}}
-          REACT_APP_APP_INSIGHTS_INSTRUMENTATION_KEY: ${{secrets.REACT_APP_APP_INSIGHTS_INSTRUMENTATION_KEY}}
+      - name: Restore source
         run: |
-          npm ci
-          npm run build
-          npm run test
-        working-directory: source/client
-      - name: Copy files
-        shell: pwsh
+          dotnet restore source/server/Karamem0.Preddy.sln
+      - name: Build web
         run: |
-          New-Item -Type Directory -Path artifact/preddy
-          Copy-Item -Path source/client/build/* -Destination artifact/preddy -Recurse
-      - name: Setup .NET Core
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: 6.x
-      - name: Build server
-        run: |
-          dotnet restore source/server
-          dotnet build source/server -c Release
-          dotnet publish source/server -c Release -o artifact/preddy/api
-      - name: Upload artifact
+          dotnet publish source/server/Karamem0.Preddy.Web/Karamem0.Preddy.Web.csproj `
+            -c Release `
+            -o artifact/web `
+            -p:Version=${{env.BUILD_VERSION}} `
+            -p:FileVersion=${{env.BUILD_VERSION}}
+      - name: Upload web build files
         uses: actions/upload-artifact@v2
         with:
-          name: preddy
-          path: artifact/preddy
+          name: preddy-web
+          path: artifact/web
+      - name: Build functions
+        run: |
+          dotnet publish source/server/Karamem0.Preddy.Functions/Karamem0.Preddy.Functions.csproj `
+            -c Release `
+            -o artifact/func `
+            -p:Version=${{env.BUILD_VERSION}} `
+            -p:FileVersion=${{env.BUILD_VERSION}}
+      - name: Upload functions build files
+        uses: actions/upload-artifact@v2
+        with:
+          name: preddy-func
+          path: artifact/func
   deploy:
     needs: build
     runs-on: windows-latest
     steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: preddy
-          path: preddy
       - name: Connect to Azure
         uses: azure/login@v1
         with:
           creds: ${{secrets.AZURE_CREDENTIALS}}
+      - name: Download web build files
+        uses: actions/download-artifact@v2
+        with:
+          name: preddy-web
+          path: artifact/web
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
-          app-name: preddy
-          package: preddy
+          app-name: ${{secrets.APP_WEB_NAME}}
+          package: artifact/web
+      - name: Download functions  build files
+        uses: actions/download-artifact@v2
+        with:
+          name: preddy-func
+          path: artifact/func
+      - name: Deploy to Azure Functions
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{secrets.APP_FUNC_NAME}}
+          package: artifact/func

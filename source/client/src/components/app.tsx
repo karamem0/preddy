@@ -11,13 +11,13 @@ import { IntlProvider } from 'react-intl';
 
 import { Provider, teamsV2Theme } from '@fluentui/react-northstar';
 
-import AppContext from '../contexts/app-context';
+import { AppContext } from '../contexts/app-context';
 import translations from '../i18n/translations';
 
-import AppInsights from './app-insights';
-import Container from './container';
+import { AppInsights } from './app-insights';
+import { Container } from './container';
 
-const App: React.FC = () => {
+export const App: React.FC = () => {
 
   const [ date, setDate ] = React.useState<Date>();
   const [ locale ] = React.useState<string>('ja');
@@ -37,5 +37,3 @@ const App: React.FC = () => {
   );
 
 };
-
-export default App;

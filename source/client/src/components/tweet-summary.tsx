@@ -11,9 +11,9 @@ import { FormattedMessage } from 'react-intl';
 
 import messages from '../i18n/messages';
 
-import TweetSummaryContent from './tweet-summary-content';
+import { TweetSummaryContent } from './tweet-summary-content';
 
-const TweetSumamry: React.FC = () => {
+export const TweetSumamry: React.FC = () => {
 
   return (
     <section className="tweet-summary">
@@ -25,5 +25,3 @@ const TweetSumamry: React.FC = () => {
   );
 
 };
-
-export default TweetSumamry;

@@ -10,7 +10,7 @@ import { defineMessages } from 'react-intl';
 
 const messages = defineMessages({
   ABOUT_SITE_CONTACT: 'このサイトについてのお問い合わせは {twitter} までお願いします。',
-  ABOUT_SITE_DESCRIPTION: 'ドクターイエローの運行は 10 日に 1 回程度とされており、そのスケジュールは公開されていません。このサイトでは、Twitter からドクターイエローの目撃情報を集計し、これまでの運行実績から Azure Machine Learning による今後の運行予測を行います。',
+  ABOUT_SITE_DESCRIPTION: 'ドクターイエローの運行は 10 日に 1 回程度とされており、そのスケジュールは公開されていません。このサイトでは、Twitter からドクターイエローの目撃情報を集計し、これまでの運行実績から Azure Machine Learning による今後の運行予測を行います。運行予測については AI が算出したものでありその結果を保証するものではありません。',
   ABOUT_SITE_TITLE: 'このサイトについて',
   ABOUT_SITE_WIKIPEDIA_TITLE: 'ドクターイエロー - Wikipedia',
   ABOUT_SITE_WIKIPEDIA_URL: 'https://ja.wikipedia.org/wiki/%E3%83%89%E3%82%AF%E3%82%BF%E3%83%BC%E3%82%A4%E3%82%A8%E3%83%AD%E3%83%BC',
@@ -25,15 +25,18 @@ const messages = defineMessages({
   PRIVACY_URL: 'https://github.com/karamem0/preddy/blob/main/PRIVACY.md',
   TERMS_OF_USE_TITLE: '利用規約',
   TERMS_OF_USE_URL: 'https://github.com/karamem0/preddy/blob/main/TERMS_OF_USE.md',
+  TWEET_FORECAST_BUTTON: '結果をツイート',
+  TWEET_FORECAST_DESCRIPTION: '次回の予測運行日は {dates} です。',
+  TWEET_FORECAST_TITLE: '運行予測',
   TWEET_STATUS_DESCRIPTION_NOT_SELECTED: 'グラフの点をクリックするとツイートの詳細を表示します。',
   TWEET_STATUS_DESCRIPTION_SELECTED: '{date} のツイートを表示します。',
-  TWEET_STATUS_TITLE: 'ツイートの詳細',
+  TWEET_STATUS_TITLE: 'ツイート詳細',
   TWEET_SUMMARY_ACTUAL: '結果',
   TWEET_SUMMARY_FORECAST: '予測',
   TWEET_SUMMARY_NEXT: '次',
   TWEET_SUMMARY_PERIOD: '期間',
   TWEET_SUMMARY_PREV: '前',
-  TWEET_SUMMARY_TITLE: 'ツイートの予測と結果',
+  TWEET_SUMMARY_TITLE: 'ツイート件数',
   TWEET_SUMMARY_TODAY: '今日'
 });
 

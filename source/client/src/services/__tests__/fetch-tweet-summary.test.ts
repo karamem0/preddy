@@ -6,7 +6,7 @@
 // https://github.com/karamem0/preddy/blob/main/LICENSE
 //
 
-import { fetchTweetSummary } from '..';
+import { fetchTweetSummary } from '../fetch-tweet-summary';
 
 describe('fetchTweetSummary', () => {
 

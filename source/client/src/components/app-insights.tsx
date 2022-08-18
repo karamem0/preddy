@@ -19,7 +19,7 @@ const reactPlugin = new ReactPlugin();
 
 const appInsights = new ApplicationInsights({
   config: {
-    instrumentationKey: process.env.REACT_APP_APP_INSIGHTS_INSTRUMENTATION_KEY,
+    instrumentationKey: process.env.APP_INSIGHTS_INSTRUMENTATION_KEY,
     extensions: [ reactPlugin ],
     extensionConfig: {
       [reactPlugin.identifier]: { history: browserHistory }
@@ -29,7 +29,7 @@ const appInsights = new ApplicationInsights({
 
 appInsights.loadAppInsights();
 
-const AppInsights = withAITracking(
+export const AppInsights = withAITracking(
   reactPlugin,
   ({ children }): React.ReactElement | null => (
     <React.Fragment>
@@ -37,5 +37,3 @@ const AppInsights = withAITracking(
     </React.Fragment>
   ),
   'AppInsights');
-
-export default AppInsights;

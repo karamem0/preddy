@@ -8,21 +8,13 @@
 
 import React from 'react';
 
-import { fetchTweetSummary } from '../services';
+import { fetchTweetSummary } from '../services/fetch-tweet-summary';
+import { TweetSummary } from '../types/tweet-summary';
 
-interface TweetSummary {
-  minDate: Date,
-  maxDate: Date,
-  items: {
-    date: Date,
-    forecast: number,
-    actual: number
-  }[]
-}
-
-const useTweetSummary = (): {
+export const useTweetSummary = (): {
   date: Date,
   value?: TweetSummary,
+  error?: Error,
   loading : boolean,
   callbacks: {
     todayCallback: () => void,
@@ -33,6 +25,7 @@ const useTweetSummary = (): {
 
   const [ date, setDate ] = React.useState<Date>(new Date());
   const [ value, setValue ] = React.useState<TweetSummary>();
+  const [ error, setError ] = React.useState<Error>();
   const [ loading, setLoading ] = React.useState<boolean>(false);
 
   const todayCallback = React.useCallback(() => {
@@ -62,17 +55,9 @@ const useTweetSummary = (): {
         minDate.setDate(minDate.getDate() - 30);
         const maxDate = new Date(date.toDateString());
         maxDate.setDate(maxDate.getDate() + 30);
-        const json = await fetchTweetSummary(minDate, maxDate);
-        setValue((value) => ({
-          ...value,
-          minDate: new Date(json.minDate),
-          maxDate: new Date(json.maxDate),
-          items: json.items.map(item => ({
-            date: new Date(item.date),
-            forecast: item.forecast,
-            actual: item.actual
-          }))
-        }));
+        setValue(await fetchTweetSummary(minDate, maxDate));
+      } catch (error) {
+        setError(error as Error);
       } finally {
         setLoading(false);
       }
@@ -82,6 +67,7 @@ const useTweetSummary = (): {
   return {
     date,
     value,
+    error,
     loading,
     callbacks: {
       todayCallback,
@@ -91,5 +77,3 @@ const useTweetSummary = (): {
   };
 
 };
-
-export default useTweetSummary;

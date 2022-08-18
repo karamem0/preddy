@@ -11,13 +11,13 @@ import { FormattedMessage, useIntl } from 'react-intl';
 
 import { Loader } from '@fluentui/react-northstar';
 
-import useTweetSummary from '../hooks/use-tweet-summary';
+import { useTweetSummary } from '../hooks/use-tweet-summary';
 import messages from '../i18n/messages';
 
-import TweetSummaryChart from './tweet-summary-chart';
-import TweetSumamryHeader from './tweet-summary-header';
+import { TweetSummaryChart } from './tweet-summary-chart';
+import { TweetSummaryHeader } from './tweet-summary-header';
 
-const TweetSumamryContent: React.FC = () => {
+export const TweetSummaryContent: React.FC = () => {
 
   const intl = useIntl();
   const {
@@ -49,7 +49,7 @@ const TweetSumamryContent: React.FC = () => {
 
   return (
     <div className="content">
-      <TweetSumamryHeader
+      <TweetSummaryHeader
         maxDate={value.maxDate}
         minDate={value.minDate}
         onNext={() => callbacks.nextCallback(date)}
@@ -67,5 +67,3 @@ const TweetSumamryContent: React.FC = () => {
   );
 
 };
-
-export default TweetSumamryContent;

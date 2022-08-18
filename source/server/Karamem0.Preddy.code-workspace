@@ -1,0 +1,19 @@
+{
+  "folders": [
+    {
+      "name": "Karamem0.Preddy.Common",
+      "path": "Karamem0.Preddy.Common"
+    },
+    {
+      "name": "Karamem0.Preddy.Functions",
+      "path": "Karamem0.Preddy.Functions"
+    },
+    {
+      "name": "Karamem0.Preddy.Web",
+      "path": "Karamem0.Preddy.Web"
+    }
+  ],
+  "settings": {
+    "azurite.location": ".azurite",
+  }
+}

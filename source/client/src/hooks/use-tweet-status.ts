@@ -8,29 +8,17 @@
 
 import React from 'react';
 
-import { fetchTweetStatus } from '../services';
+import { fetchTweetStatus } from '../services/fetch-tweet-status';
+import { TweetStatus } from '../types/tweet-status';
 
-interface TweetStatus {
-  items: {
-    statusId: number,
-    userId: number,
-    userName: string,
-    screenName: string,
-    text: string,
-    tweetedAt: Date,
-    profileImageUrl: string,
-    statusUrl: string,
-    userUrl: string,
-    mediaUrl: string
-  }[]
-}
-
-const useTweetStatus = (date?: Date): {
+export const useTweetStatus = (date?: Date): {
   value?: TweetStatus,
+  error?: Error,
   loading : boolean
 } => {
 
   const [ value, setValue ] = React.useState<TweetStatus>();
+  const [ error, setError ] = React.useState<Error>();
   const [ loading, setLoading ] = React.useState<boolean>(false);
 
   React.useEffect(() => {
@@ -43,22 +31,9 @@ const useTweetStatus = (date?: Date): {
         const minDate = new Date(date.toDateString());
         const maxDate = new Date(date.toDateString());
         maxDate.setDate(maxDate.getDate() + 1);
-        const json = await fetchTweetStatus(minDate, maxDate);
-        setValue((value) => ({
-          ...value,
-          items: json.items.map(item => ({
-            statusId: item.statusId,
-            userId: item.userId,
-            userName: item.userName,
-            screenName: item.screenName,
-            text: item.text,
-            tweetedAt: new Date(item.tweetedAt),
-            profileImageUrl: item.profileImageUrl,
-            statusUrl: item.statusUrl,
-            userUrl: item.userUrl,
-            mediaUrl: item.mediaUrl
-          }))
-        }));
+        setValue(await fetchTweetStatus(minDate, maxDate));
+      } catch (error) {
+        setError(error as Error);
       } finally {
         setLoading(false);
       }
@@ -66,10 +41,9 @@ const useTweetStatus = (date?: Date): {
   }, [ date ]);
 
   return {
-    loading,
-    value
+    value,
+    error,
+    loading
   };
 
 };
-
-export default useTweetStatus;

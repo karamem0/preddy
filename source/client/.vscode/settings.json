@@ -14,6 +14,7 @@
   "css.validate": false,
   "less.validate": false,
   "scss.validate": false,
+  "stylelint.configFile": "./.stylelintrc.json",
   "stylelint.customSyntax": "postcss-scss",
   "stylelint.snippet": [
     "css",

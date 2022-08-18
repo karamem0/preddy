@@ -11,7 +11,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 
 import messages from '../i18n/messages';
 
-const AboutSite: React.FC = () => {
+export const AboutSite: React.FC = () => {
 
   const intl = useIntl();
 
@@ -44,5 +44,3 @@ const AboutSite: React.FC = () => {
   );
 
 };
-
-export default AboutSite;

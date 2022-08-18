@@ -8,9 +8,7 @@
 
 import React from 'react';
 
-const AppContext = React.createContext<[
+export const AppContext = React.createContext<[
   date?: Date,
   setDate?: React.Dispatch<React.SetStateAction<Date | undefined>>,
 ]>([]);
-
-export default AppContext;

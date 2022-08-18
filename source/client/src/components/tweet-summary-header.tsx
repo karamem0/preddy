@@ -16,7 +16,7 @@ import {
 } from '@fluentui/react-icons-mdl2';
 import { Button } from '@fluentui/react-northstar';
 
-import AppContext from '../contexts/app-context';
+import { AppContext } from '../contexts/app-context';
 import messages from '../i18n/messages';
 
 interface TweetSummaryHeaderProps {
@@ -27,7 +27,7 @@ interface TweetSummaryHeaderProps {
   onNext?: () => void
 }
 
-const TweetSummaryHeader: React.FC<TweetSummaryHeaderProps> = (props: TweetSummaryHeaderProps) => {
+export const TweetSummaryHeader: React.FC<TweetSummaryHeaderProps> = (props) => {
 
   const {
     minDate,
@@ -118,5 +118,3 @@ const TweetSummaryHeader: React.FC<TweetSummaryHeaderProps> = (props: TweetSumma
   );
 
 };
-
-export default TweetSummaryHeader;

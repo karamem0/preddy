@@ -15,7 +15,7 @@ import { VscGithub } from 'react-icons/vsc';
 
 import messages from '../i18n/messages';
 
-const Footer: React.FC = () => {
+export const Footer: React.FC = () => {
 
   const intl = useIntl();
 
@@ -39,5 +39,3 @@ const Footer: React.FC = () => {
   );
 
 };
-
-export default Footer;

@@ -17,7 +17,7 @@ import {
 
 import messages from '../i18n/messages';
 
-const Header: React.FC = () => {
+export const Header: React.FC = () => {
 
   const intl = useIntl();
 
@@ -31,15 +31,17 @@ const Header: React.FC = () => {
       </div>
       <div className="share">
         <FacebookShareButton
+          hashtag={intl.formatMessage(messages.APP_TITLE)}
           title={intl.formatMessage(messages.APP_TITLE)}
-          url={process.env.REACT_APP_CLIENT_URL}>
+          url={window.location.origin}>
           <FacebookIcon
             round
             size={24} />
         </FacebookShareButton>
         <TwitterShareButton
+          hashtags={[ intl.formatMessage(messages.APP_TITLE) ]}
           title={intl.formatMessage(messages.APP_TITLE)}
-          url={process.env.REACT_APP_CLIENT_URL}>
+          url={window.location.origin}>
           <TwitterIcon
             round
             size={24} />
@@ -49,5 +51,3 @@ const Header: React.FC = () => {
   );
 
 };
-
-export default Header;

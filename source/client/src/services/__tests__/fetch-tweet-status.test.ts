@@ -6,7 +6,7 @@
 // https://github.com/karamem0/preddy/blob/main/LICENSE
 //
 
-import { fetchTweetStatus } from '..';
+import { fetchTweetStatus } from '../fetch-tweet-status';
 
 describe('fetchTweetStatus', () => {
 

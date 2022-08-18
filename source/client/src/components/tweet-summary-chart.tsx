@@ -18,24 +18,19 @@ import {
   XAxis
 } from 'recharts';
 
-import AppContext from '../contexts/app-context';
+import { AppContext } from '../contexts/app-context';
 import messages from '../i18n/messages';
-
-interface TweetSummary {
-  date: Date,
-  forecast: number,
-  actual: number
-}
+import { TweetSummaryItem } from '../types/tweet-summary';
 
 interface TweetSummaryEventArgs {
-  payload: TweetSummary
+  payload: TweetSummaryItem
 }
 
 interface TweetSummaryChartProps {
-  items: TweetSummary[]
+  items: TweetSummaryItem[]
 }
 
-const TweetSummaryChart: React.FC<TweetSummaryChartProps> = (props: TweetSummaryChartProps) => {
+export const TweetSummaryChart: React.FC<TweetSummaryChartProps> = (props) => {
 
   const { items } = props;
   const [ , setDate ] = React.useContext(AppContext);
@@ -50,7 +45,7 @@ const TweetSummaryChart: React.FC<TweetSummaryChartProps> = (props: TweetSummary
             <Line
               activeDot={{
                 r: 6,
-                onClick: (event: unknown, value: unknown) => {
+                onClick: (_, value: unknown) => {
                   if (!setDate) {
                     return;
                   }
@@ -69,7 +64,7 @@ const TweetSummaryChart: React.FC<TweetSummaryChartProps> = (props: TweetSummary
             <Line
               activeDot={{
                 r: 6,
-                onClick: (event: unknown, value: unknown) => {
+                onClick: (_, value: unknown) => {
                   if (!setDate) {
                     return;
                   }
@@ -112,5 +107,3 @@ const TweetSummaryChart: React.FC<TweetSummaryChartProps> = (props: TweetSummary
   );
 
 };
-
-export default TweetSummaryChart;

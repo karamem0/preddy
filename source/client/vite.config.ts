@@ -3,11 +3,8 @@ import { defineConfig } from 'vite';
 import env from 'vite-plugin-env-compatible';
 
 export default defineConfig({
-  server: {
-    open: false
-  },
   build: {
-    outDir: 'build'
+    outDir: 'dist'
   },
   plugins: [
     react({
@@ -18,7 +15,16 @@ export default defineConfig({
       }
     }),
     env({
-      prefix: 'REACT_APP'
+      prefix: 'APP'
     })
-  ]
+  ],
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:5000',
+        changeOrigin: true,
+        secure: false
+      }
+    }
+  }
 });
