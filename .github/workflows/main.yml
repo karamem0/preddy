@@ -5,7 +5,7 @@ on:
       - develop
 
 env:
-  BUILD_VERSION: 3.0.0.${{github.run_number}}
+  BUILD_VERSION: 3.1.0.${{github.run_number}}
 
 jobs:
   build:
@@ -14,7 +14,7 @@ jobs:
       APP_INSIGHTS_INSTRUMENTATION_KEY: ${{secrets.APP_INSIGHTS_INSTRUMENTATION_KEY}}
     steps:
       - name: Checkout repos
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Setup Node.js 16.x
         uses: actions/setup-node@v1
         with:
@@ -30,7 +30,7 @@ jobs:
             -p:Version=${{env.BUILD_VERSION}} `
             -p:FileVersion=${{env.BUILD_VERSION}}
       - name: Upload web build files
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: preddy-web
           path: artifact/web
@@ -42,7 +42,7 @@ jobs:
             -p:Version=${{env.BUILD_VERSION}} `
             -p:FileVersion=${{env.BUILD_VERSION}}
       - name: Upload functions build files
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: preddy-func
           path: artifact/func
@@ -55,7 +55,7 @@ jobs:
         with:
           creds: ${{secrets.AZURE_CREDENTIALS}}
       - name: Download web build files
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: preddy-web
           path: artifact/web
@@ -65,7 +65,7 @@ jobs:
           app-name: ${{secrets.APP_WEB_NAME}}
           package: artifact/web
       - name: Download functions  build files
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: preddy-func
           path: artifact/func

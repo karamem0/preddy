@@ -7,8 +7,6 @@
 //
 
 using Karamem0.Preddy.Models;
-using Karamem0.Preddy.Models.Database;
-using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,11 +25,26 @@ namespace Karamem0.Preddy.Services
             this.context = context;
         }
 
-        public async Task RunAsync()
+        public async Task RunPipelineAsync()
         {
             await this.context
-                .RunAsync()
+                .RunPipelineAsync()
                 .ConfigureAwait(false);
+        }
+
+        public async Task DeleteJobsAsync()
+        {
+            var timestamp = DateTime.UtcNow.AddDays(-7);
+            await foreach (var item in this.context.GetJobsAsync())
+            {
+                if (item.SystemData == null || item.SystemData.CreatedAt <= timestamp)
+                {
+                    if (item.Name != null)
+                    {
+                        await this.context.DeleteJobAsync(item.Name);
+                    }
+                }
+            }
         }
 
     }

@@ -13,7 +13,6 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Karamem0.Preddy.Functions
@@ -50,7 +49,8 @@ namespace Karamem0.Preddy.Functions
                     await this.tweetActualService.AddOrUpdateAsync(actual);
                 }
                 await this.tweetActualService.ExportAsync();
-                await this.azuremlService.RunAsync();
+                await this.azuremlService.RunPipelineAsync();
+                await this.azuremlService.DeleteJobsAsync();
             }
             catch (Exception ex)
             {
