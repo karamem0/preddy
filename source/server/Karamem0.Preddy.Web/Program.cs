@@ -6,27 +6,44 @@
 // https://github.com/karamem0/preddy/blob/main/LICENSE
 //
 
-using Microsoft.AspNetCore.Hosting;
+using Karamem0.Preddy;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Karamem0.Preddy
+var builder = WebApplication.CreateBuilder(args);
+
+var configuration = builder.Configuration;
+var services = builder.Services;
+_ = services.AddControllers();
+_ = services.AddHttpClient();
+_ = services.AddCors(options =>
+    options.AddDefaultPolicy(builder => _ = builder
+        .AllowAnyOrigin()
+        .AllowAnyHeader()
+        .AllowAnyMethod()));
+_ = services.AddApplicationInsightsTelemetry();
+_ = services.AddDbContext(configuration);
+_ = services.AddServices();
+
+var app = builder.Build();
+if (app.Environment.IsDevelopment())
 {
-
-    public static class Program
-    {
-
-        private static void Main(string[] args)
-        {
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(builder => _ = builder.UseStartup<Startup>())
-                .Build()
-                .Run();
-        }
-
-    }
-
+    _ = app.UseDeveloperExceptionPage();
+    _ = app.UseCors();
 }
+_ = app.UseHttpsRedirection();
+_ = app.UseDefaultFiles();
+_ = app.UseStaticFiles();
+_ = app.UseRouting();
+_ = app.UseEndpoints(endpoints =>
+{
+    _ = endpoints.MapControllers();
+    _ = endpoints.MapFallbackToFile("/index.html");
+});
+
+app.Run();
