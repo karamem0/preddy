@@ -3,7 +3,9 @@
 [![.github/workflows/main.yml](https://github.com/karamem0/preddy/actions/workflows/main.yml/badge.svg)](https://github.com/karamem0/preddy/actions/workflows/main.yml)
 [![License](https://img.shields.io/github/license/karamem0/preddy.svg)](https://github.com/karamem0/preddy/blob/main/LICENSE)
 
-[ドクターイエロー運行予測](https://preddy.karamem0.dev)
+**重要: Twitter 社より API の有料化がアナウンスされました。そのため本サービスは停止することとします。**
+
+[~~ドクターイエロー運行予測~~](https://preddy.karamem0.dev)
 
 ドクターイエローに関するつぶやきから次の運行日を予測します。
 
